@@ -7,9 +7,11 @@ services:
         build: 
             context: ./
             args: 
+                - APP_PATH=${APP_PATH}
                 - NODE_VERSION=${NODE_VERSION}
                 - EXPOSE_PORT=${EXPOSE_PORT}
         ports: 
             - "${LOCAL_PORT}:${EXPOSE_PORT}"
         volumes: 
-            - ./app:/usr/src/app
+            - ${APP_PATH}:/usr/src/app
+        command: ${NPM_COMMAND}
